@@ -33,23 +33,19 @@ const Index = () => {
   useEffect(() => {
     startMusic();
 
+    const events = ["click", "touchstart", "pointerdown", "mousedown", "keydown"];
+
     const handler = () => {
       startMusic();
       if (hasStartedRef.current) {
-        window.removeEventListener("click", handler);
-        window.removeEventListener("touchstart", handler);
-        window.removeEventListener("scroll", handler);
+        events.forEach(e => window.removeEventListener(e, handler));
       }
     };
 
-    window.addEventListener("click", handler);
-    window.addEventListener("touchstart", handler);
-    window.addEventListener("scroll", handler);
+    events.forEach(e => window.addEventListener(e, handler));
 
     return () => {
-      window.removeEventListener("click", handler);
-      window.removeEventListener("touchstart", handler);
-      window.removeEventListener("scroll", handler);
+      events.forEach(e => window.removeEventListener(e, handler));
     };
   }, [startMusic]);
 
