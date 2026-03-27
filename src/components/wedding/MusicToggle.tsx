@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 const MusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const hasStartedRef = useRef(false);
 
   useEffect(() => {
     const audio = new Audio(`${import.meta.env.BASE_URL}wedding-music.mp3`);
@@ -12,9 +13,38 @@ const MusicToggle = () => {
     audio.volume = 0.3;
     audioRef.current = audio;
 
+    const attemptPlay = () => {
+      if (hasStartedRef.current || !audioRef.current) return;
+      
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+          hasStartedRef.current = true;
+          removeListeners();
+        })
+        .catch(() => {
+          console.log("Autoplay blocked. Waiting for user interaction...");
+        });
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener("click", attemptPlay);
+      window.removeEventListener("touchstart", attemptPlay);
+      window.removeEventListener("scroll", attemptPlay);
+    };
+
+    // Try playing immediately
+    attemptPlay();
+
+    // Add listeners for interaction to trigger play as soon as possible
+    window.addEventListener("click", attemptPlay);
+    window.addEventListener("touchstart", attemptPlay);
+    window.addEventListener("scroll", attemptPlay);
+
     return () => {
       audio.pause();
       audioRef.current = null;
+      removeListeners();
     };
   }, []);
 
@@ -25,11 +55,14 @@ const MusicToggle = () => {
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
+      // If user manually pauses, we should stop trying to auto-start
+      hasStartedRef.current = true;
     } else {
       audio.play().catch(() => {
         console.log("Playback failed — browser may require interaction first.");
       });
       setIsPlaying(true);
+      hasStartedRef.current = true;
     }
   };
 
