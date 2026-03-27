@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import ganeshaImg from "/wedding/ganesha.png";
+const ganeshaImg = `${import.meta.env.BASE_URL}wedding/ganesha.png`;
 
 const HeroSection = () => {
   const scrollToNext = () => {

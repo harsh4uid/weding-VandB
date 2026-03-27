@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const images = [
-  { src: "/wedding/Screenshot From 2026-03-27 19-32-49.png", alt: "Wedding moment 1" },
-  { src: "/wedding/Screenshot From 2026-03-27 19-33-09.png", alt: "Wedding moment 2" },
-  { src: "/wedding/Screenshot From 2026-03-27 19-33-22.png", alt: "Wedding moment 3" },
-  { src: "/wedding/Screenshot From 2026-03-27 19-33-32.png", alt: "Wedding moment 4" },
+  { src: `${import.meta.env.BASE_URL}wedding/Screenshot From 2026-03-27 19-32-49.png`, alt: "Wedding moment 1" },
+  { src: `${import.meta.env.BASE_URL}wedding/Screenshot From 2026-03-27 19-33-09.png`, alt: "Wedding moment 2" },
+  { src: `${import.meta.env.BASE_URL}wedding/Screenshot From 2026-03-27 19-33-22.png`, alt: "Wedding moment 3" },
+  { src: `${import.meta.env.BASE_URL}wedding/Screenshot From 2026-03-27 19-33-32.png`, alt: "Wedding moment 4" },
 ];
 
 const Gallery = () => {

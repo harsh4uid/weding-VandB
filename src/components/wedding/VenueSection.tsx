@@ -57,7 +57,7 @@ const VenueSection = () => {
               </div>
               <div className="bg-wedding-dark-maroon rounded-lg h-48 md:h-56 mb-6 border border-wedding-gold/20 overflow-hidden relative group">
                 <img
-                  src="/wedding/image.png"
+                  src={`${import.meta.env.BASE_URL}wedding/image.png`}
                   alt="Map to Rajendra Club"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

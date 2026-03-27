@@ -7,7 +7,7 @@ const MusicToggle = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("/wedding-music.mp3");
+    audioRef.current = new Audio(`${import.meta.env.BASE_URL}wedding-music.mp3`);
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
 
