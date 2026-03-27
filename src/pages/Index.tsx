@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import Navbar from "@/components/wedding/Navbar";
 import HeroSection from "@/components/wedding/HeroSection";
 import SaveTheDate from "@/components/wedding/SaveTheDate";
@@ -7,17 +7,15 @@ import VenueSection from "@/components/wedding/VenueSection";
 import Gallery from "@/components/wedding/Gallery";
 import FamilyBlessings from "@/components/wedding/FamilyBlessings";
 import Footer from "@/components/wedding/Footer";
-import MusicToggle from "@/components/wedding/MusicToggle";
 import FloatingPetals from "@/components/wedding/FloatingPetals";
 
 const Index = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const hasStartedRef = useRef(false);
 
   const startMusic = useCallback(() => {
     if (hasStartedRef.current) return;
-    
+
     if (!audioRef.current) {
       const audio = new Audio(`${import.meta.env.BASE_URL}wedding-music.mp3`);
       audio.loop = true;
@@ -26,7 +24,6 @@ const Index = () => {
     }
 
     audioRef.current.play().then(() => {
-      setIsPlaying(true);
       hasStartedRef.current = true;
     }).catch(() => {
       // Browser blocked it, will retry on next interaction
@@ -34,13 +31,10 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // Try autoplay immediately
     startMusic();
 
-    // Also listen for first interaction to start music
     const handler = () => {
       startMusic();
-      // Clean up after successful start
       if (hasStartedRef.current) {
         window.removeEventListener("click", handler);
         window.removeEventListener("touchstart", handler);
@@ -62,7 +56,6 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <MusicToggle audioRef={audioRef} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       <FloatingPetals />
       <HeroSection />
       <SaveTheDate />
