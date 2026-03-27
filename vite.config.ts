@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/wedding-VandB/", // 👈 THIS IS THE FIX
+  base: "/weding-VandB/", // Matches GitHub repository name
 
   server: {
     host: "::",
