@@ -1,53 +1,14 @@
-import { useState, useRef, useEffect } from "react";
+import { Dispatch, MutableRefObject, SetStateAction } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
 
-const MusicToggle = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const hasStartedRef = useRef(false);
+interface MusicToggleProps {
+  audioRef: MutableRefObject<HTMLAudioElement | null>;
+  isPlaying: boolean;
+  setIsPlaying: Dispatch<SetStateAction<boolean>>;
+}
 
-  useEffect(() => {
-    const audio = new Audio(`${import.meta.env.BASE_URL}wedding-music.mp3`);
-    audio.loop = true;
-    audio.volume = 0.3;
-    audioRef.current = audio;
-
-    const attemptPlay = () => {
-      if (hasStartedRef.current || !audioRef.current) return;
-      
-      audioRef.current.play()
-        .then(() => {
-          setIsPlaying(true);
-          hasStartedRef.current = true;
-          removeListeners();
-        })
-        .catch(() => {
-          console.log("Autoplay blocked. Waiting for user interaction...");
-        });
-    };
-
-    const removeListeners = () => {
-      window.removeEventListener("click", attemptPlay);
-      window.removeEventListener("touchstart", attemptPlay);
-      window.removeEventListener("scroll", attemptPlay);
-    };
-
-    // Try playing immediately
-    attemptPlay();
-
-    // Add listeners for interaction to trigger play as soon as possible
-    window.addEventListener("click", attemptPlay);
-    window.addEventListener("touchstart", attemptPlay);
-    window.addEventListener("scroll", attemptPlay);
-
-    return () => {
-      audio.pause();
-      audioRef.current = null;
-      removeListeners();
-    };
-  }, []);
-
+const MusicToggle = ({ audioRef, isPlaying, setIsPlaying }: MusicToggleProps) => {
   const toggleMusic = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -55,14 +16,11 @@ const MusicToggle = () => {
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
-      // If user manually pauses, we should stop trying to auto-start
-      hasStartedRef.current = true;
     } else {
       audio.play().catch(() => {
-        console.log("Playback failed — browser may require interaction first.");
+        console.log("Playback failed.");
       });
       setIsPlaying(true);
-      hasStartedRef.current = true;
     }
   };
 
