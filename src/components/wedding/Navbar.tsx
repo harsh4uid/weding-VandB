@@ -1,20 +1,33 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Ceremonies", href: "#ceremonies" },
-  { label: "Venue & Family", href: "#venue" },
-  { label: "RSVP", href: "#rsvp" },
+  { label: "Home", href: "/" },
+  { label: "Ghurchadi", href: "/#ghurchadi" },
+  { label: "Ceremonies", href: "/#ceremonies" },
+  { label: "Venue & Family", href: "/#venue" },
+  { label: "RSVP", href: "/#rsvp" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const scrollTo = (href: string) => {
+  const handleNav = (href: string) => {
     setIsOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("/#")) {
+      const targetHash = href.substring(1);
+      if (location.pathname === "/") {
+        const el = document.querySelector(targetHash);
+        el?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate(href);
+      }
+    } else {
+      navigate(href);
+    }
   };
 
   return (
@@ -35,7 +48,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <button
               key={item.href}
-              onClick={() => scrollTo(item.href)}
+              onClick={() => handleNav(item.href)}
               className="text-wedding-gold/80 text-sm tracking-wider uppercase hover:text-wedding-gold transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-wedding-gold after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
             >
               {item.label}
@@ -58,7 +71,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <button
               key={item.href}
-              onClick={() => scrollTo(item.href)}
+              onClick={() => handleNav(item.href)}
               className="block w-full text-left py-3 text-wedding-gold/80 text-sm tracking-wider uppercase hover:text-wedding-gold transition-colors border-b border-wedding-gold/10 last:border-0"
             >
               {item.label}

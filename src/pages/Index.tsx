@@ -4,6 +4,7 @@ import SaveTheDate from "@/components/wedding/SaveTheDate";
 import InvitationMessage from "@/components/wedding/InvitationMessage";
 import VenueSection from "@/components/wedding/VenueSection";
 import Gallery from "@/components/wedding/Gallery";
+import GhurchadiSection from "@/components/wedding/GhurchadiSection";
 import FamilyBlessings from "@/components/wedding/FamilyBlessings";
 import Footer from "@/components/wedding/Footer";
 import FloatingPetals from "@/components/wedding/FloatingPetals";
@@ -17,6 +18,7 @@ const Index = () => {
       <SaveTheDate />
       <InvitationMessage />
       <VenueSection />
+      <GhurchadiSection />
       <Gallery />
       <FamilyBlessings />
       <Footer />
