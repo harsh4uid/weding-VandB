@@ -33,11 +33,8 @@ const VenueSection = () => {
               <h3 className="font-display text-3xl md:text-4xl text-wedding-cream mb-4 drop-shadow-md">
                 Rajendra Club
               </h3>
-              <p className="text-wedding-gold/90 font-display text-xl mb-2 tracking-wide">
-                Rajender Nagar, Ghaziabad
-              </p>
-              <p className="text-wedding-cream/50 font-display">
-                Uttar Pradesh, India
+              <p className="text-wedding-gold/90 font-display text-lg mb-2 tracking-wide">
+                Dr Radha Krishnan Marg, Block 10, Rajendra Nagar, Sahibabad, Ghaziabad, Uttar Pradesh 201005
               </p>
               <div className="mt-6 flex items-center gap-2 justify-center md:justify-start text-wedding-gold/60">
                 <span>🪔</span>
@@ -67,7 +64,7 @@ const VenueSection = () => {
                 </div>
               </div>
               <a
-                href="https://www.google.com/maps/search/Rajendra+Club+Rajender+Nagar+Ghaziabad"
+                href="https://www.google.com/maps/search/Dr+Radha+Krishnan+Marg,+Block+10,+Rajendra+Nagar,+Sahibabad,+Ghaziabad,+Uttar+Pradesh+201005"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-wedding-dark-maroon font-display font-semibold text-sm tracking-widest gold-gradient-bg lux-shadow hover:brightness-110 transition-all duration-300"
