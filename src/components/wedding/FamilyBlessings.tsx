@@ -28,13 +28,19 @@ const FamilyBlessings = () => {
           "With the divine grace of Lord Ram and the blessings of our beloved families, two hearts unite in the sacred bond of marriage."
         </p>
 
-        {/* Gold tree symbol */}
-        <div className="text-wedding-gold text-5xl mb-8 animate-gentle-pulse">
-          🌳
+        {/* Lord Ganesha symbol */}
+        <div className="flex justify-center mb-8">
+          <motion.img
+            src={`${import.meta.env.BASE_URL}wedding/ganesha.png`}
+            alt="Lord Ganesha"
+            className="w-24 h-24 md:w-32 md:h-32 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
 
         <p className="font-display text-lg text-wedding-gold/70 tracking-wider">
-          The Sharma & Sharma Families
+          Bisht and Sharma Family
         </p>
 
         {/* Floral corners */}

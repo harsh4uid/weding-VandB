@@ -27,7 +27,7 @@ const Navbar = () => {
 
         {/* Center title */}
         <h1 className="font-script text-2xl md:text-3xl text-wedding-gold absolute left-1/2 -translate-x-1/2">
-          Varun & Bhawna
+          Bhawna weds Varun
         </h1>
 
         {/* Desktop nav */}

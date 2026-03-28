@@ -27,7 +27,7 @@ const InvitationMessage = () => {
         </p>
 
         <h2 className="font-script text-5xl md:text-7xl text-wedding-gold mb-6">
-          Varun & Bhawna
+          Bhawna weds Varun
         </h2>
 
         <p className="font-display text-lg text-wedding-maroon/70 leading-relaxed max-w-xl mx-auto">

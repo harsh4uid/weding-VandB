@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="w-12 h-[1px] bg-wedding-gold/30" />
       </div>
       <p className="font-display text-wedding-cream/40 text-sm">
-        © 2024 Varun & Bhawna's Wedding. All rights reserved.
+        © 2024 Bhawna weds Varun. All rights reserved.
       </p>
       <p className="font-devanagari text-wedding-gold/30 text-sm mt-2">
         ॥ शुभ विवाह ॥
